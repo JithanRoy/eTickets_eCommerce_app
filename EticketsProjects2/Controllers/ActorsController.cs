@@ -17,5 +17,9 @@ namespace EticketsProjects2.Controllers
             var data =await _service.GetAll();
             return View(data);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
