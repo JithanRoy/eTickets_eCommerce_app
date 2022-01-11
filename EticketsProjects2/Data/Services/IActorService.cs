@@ -6,7 +6,7 @@ namespace EticketsProjects2.Data.Services
     {
         Task<IEnumerable<Actor>> GetAll();
         Actor GetById(int id);
-        void Add(Actor actor);
+        void AddAsync(Actor actor);
         Actor update(int id, Actor newActor);
         void Delete(int id);
     }

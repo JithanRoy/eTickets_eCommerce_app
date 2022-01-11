@@ -42,8 +42,15 @@
     </div>
 </div>
 
-<div style="position: fixed; right: 25px; bottom: 25px" class="text-white">
-    <a asp-controller="Actors" asp-action="Create" class="btn-primary btn-success">
+@*    <div class="text-white" style="position: fixed; right: 25px; bottom: 25px">
+    <a asp-controller="Actors" asp-action="Create" class="btn-success">
         <i class="bi bi-plus-circle"></i> Add New
     </a>
-</div>
+    https://www.dotnethow.net/images/actors/actor-2.jpeg
+    </div>*@
+
+    <div type="button" class="btn btn-success">
+            <a style="color: white" asp-controller="Actors" asp-action="Create" >
+                    Add New
+            </a>
+    </div>
