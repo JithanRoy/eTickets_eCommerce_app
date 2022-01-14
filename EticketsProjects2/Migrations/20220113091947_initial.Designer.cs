@@ -12,8 +12,8 @@ using eTickets.Data;
 namespace EticketsProjects2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211221153248_Initial")]
-    partial class Initial
+    [Migration("20220113091947_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,8 @@ namespace EticketsProjects2.Migrations
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ProfilePictureURL")
                         .IsRequired()

@@ -2,6 +2,7 @@
 using eTickets.Models;
 using EticketsProjects2.Data.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace EticketsProjects2.Controllers
 {
@@ -9,14 +10,21 @@ namespace EticketsProjects2.Controllers
     {
         private readonly IActorService _service;
 
-        public ActorsController(IActorService service)
+        public ModelStateDictionary IsValid{ get; private set; }
+
+        public ActorsController (IActorService service)
         {
             _service = service;
         }
         public async Task<IActionResult> Index()
         {
-            var data =await _service.GetAll();
+            var data = await _service.GetAllAsync();
             return View(data);
+        }
+
+        public IActorService Get_service()
+        {
+            return _service;
         }
 
         //Get: Actors/Create
@@ -25,29 +33,44 @@ namespace EticketsProjects2.Controllers
             return View();
         }
 
-        public IActorService Get_service()
-        {
-            return _service;
-        }
-
         [HttpPost]
         public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return View(actor);
             }
-            _service.AddAsync(actor);
+            await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
+
         }
 
         //Get: Actors/Details/1
         public async Task<IActionResult> Details(int id)
         {
-            var actorDetails = _service.GetById(id);
+            var actorDetails = await _service.GetByIdAsync(id);
 
-            if (actorDetails == null) return View("Empty");
+            if (actorDetails == null) return View("NotFound");
             return View(actorDetails);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null) return View("NotFound");
+            return View(actorDetails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("ActorId,FullName,ProfilePictureURL,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }
