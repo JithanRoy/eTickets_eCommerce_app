@@ -44,7 +44,6 @@ namespace EticketsProjects2.Controllers
 
             await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
-
         }
 
         //Get: Actors/Details/1

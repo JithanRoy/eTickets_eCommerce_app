@@ -12,7 +12,7 @@ using eTickets.Data;
 namespace EticketsProjects2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220115185714_initial")]
+    [Migration("20220119102810_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

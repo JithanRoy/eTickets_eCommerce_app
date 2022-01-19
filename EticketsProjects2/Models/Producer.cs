@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EticketsProjects2.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
-    public class Producer
+    public class Producer : IEntityBase
     {
         [Key]
         public int ProducerId { get; set; }
@@ -18,5 +19,6 @@ namespace eTickets.Models
 
         //RelationShips
         public List<Movie> Movies { get; set; }
+        public int ActorId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
