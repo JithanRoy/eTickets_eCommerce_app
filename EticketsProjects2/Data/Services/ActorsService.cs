@@ -18,9 +18,11 @@ namespace EticketsProjects2.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Actors.FirstOrDefaultAsync(n => n.ActorId == id);
+             _context.Actors.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Actor>> GetAllAsync()
@@ -29,9 +31,9 @@ namespace EticketsProjects2.Data.Services
             return result;
         }
 
-        async Task<Actor> IActorService.GetByIdAsync(int Id)
+        async Task<Actor> IActorService.GetByIdAsync(int id)
         {
-            var data = await _context.Actors.FirstOrDefaultAsync(n => n.ActorId == Id);
+            var data = await _context.Actors.FirstOrDefaultAsync(n => n.ActorId == id);
             return data;
         }
 

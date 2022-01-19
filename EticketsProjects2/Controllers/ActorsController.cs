@@ -11,6 +11,7 @@ namespace EticketsProjects2.Controllers
         private readonly IActorService _service;
 
         public ModelStateDictionary IsValid{ get; private set; }
+        public ModelStateDictionary Null { get; private set; }
 
         public ActorsController (IActorService service)
         {
@@ -40,6 +41,7 @@ namespace EticketsProjects2.Controllers
             {
                 return View(actor);
             }
+
             await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
 
@@ -54,6 +56,7 @@ namespace EticketsProjects2.Controllers
             return View(actorDetails);
         }
 
+        //Get: Actors/Edit/1
         public async Task<IActionResult> Edit(int id)
         {
             var actorDetails = await _service.GetByIdAsync(id);
@@ -69,6 +72,25 @@ namespace EticketsProjects2.Controllers
                 return View(actor);
             }
             await _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        //Get: Actors/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null) return View("NotFound");
+            return View(actorDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if(actorDetails == null) return View("NotFound");
+
+            await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
 
         }
