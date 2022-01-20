@@ -37,10 +37,10 @@ namespace EticketsProjects2.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
-            if(!ModelState.IsValid)
+/*            if(!ModelState.IsValid)
             {
                 return View(actor);
-            }
+            }*/
 
             await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));

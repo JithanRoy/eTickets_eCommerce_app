@@ -2,6 +2,6 @@
 {
     public interface IEntityBase
     {
-        int ActorId { get; set; }
+        int Id { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace EticketsProjects2.Data.Base
         }
         public async Task DeleteAsync(int id)
         {
-            var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.ActorId == id);
+            var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
             EntityEntry entityEntry = _context.Entry<T>(entity);
             entityEntry.State = EntityState.Deleted;
 
@@ -28,7 +28,7 @@ namespace EticketsProjects2.Data.Base
 
         public async Task<IEnumerable<T>> GetAllAsync() =>  await _context.Set<T>().ToListAsync();
 
-        public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FirstOrDefaultAsync(n => n.ActorId == id);
+        public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
         
         public async Task UpdateAsync(int id, T entity)
         {
