@@ -3,7 +3,7 @@ using EticketsProjects2.Data.Base;
 
 namespace EticketsProjects2.Data.Services
 {
-    public interface IActorService : IEntityBaseRepository<Actor>
+    public interface ICinemasService : IEntityBaseRepository<Cinema>
     {
         
     }
