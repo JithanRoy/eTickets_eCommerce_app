@@ -41,17 +41,19 @@
   
     </div>
 </div>
-
+@*
     <div class="text-white" style="position: fixed; right: 25px; bottom: 70px">
         <a class="btn btn-success" asp-controller="Actors" asp-action="Create">
             <i class="bi bi-plus-circle"></i> Add New
         </a>
-    </div>
+    </div>*@
 
 @*    <div type="button" class="btn btn-success">
             <a style="color: white" asp-controller="Actors" asp-action="Create" >
                     Add New
             </a>
     </div>*@
+
+@await Html.PartialAsync("_CreateItem", "Actors")
 
 @*https://www.dotnethow.net/images/actors/actor-2.jpeg*@
