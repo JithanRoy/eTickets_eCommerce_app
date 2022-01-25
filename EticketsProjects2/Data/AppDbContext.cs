@@ -1,4 +1,5 @@
 ﻿using eTickets.Models;
+using EticketsProjects2.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Data
@@ -30,6 +31,11 @@ namespace eTickets.Data
         public DbSet<Actor_Movie> Actors_Movies { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Producer> Producers { get; set; }
-        public object Cinema { get; internal set; }
+        /*public object Cinema { get; internal set; }*/
+
+        //Order related tables
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
     }
 }
