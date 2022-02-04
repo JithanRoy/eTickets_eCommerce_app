@@ -1,11 +1,15 @@
 ﻿using eTickets.Data;
 using eTickets.Models;
 using EticketsProjects2.Data.Services;
+using EticketsProjects2.Data.Static;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EticketsProjects2.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
+
     public class CinemasController : Controller
     {
         private readonly ICinemasService _service;

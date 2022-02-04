@@ -1,13 +1,18 @@
 ﻿using eTickets.Data;
 using eTickets.Models;
 using EticketsProjects2.Data.Services;
+using EticketsProjects2.Data.Static;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace EticketsProjects2.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
+
     public class ActorsController : Controller
     {
+        
         private readonly IActorService _service;
 
         public ModelStateDictionary IsValid{ get; private set; }
@@ -17,6 +22,8 @@ namespace EticketsProjects2.Controllers
         {
             _service = service;
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var data = await _service.GetAllAsync();
